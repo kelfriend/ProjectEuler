@@ -11,4 +11,7 @@ while x<4000000 do
     x:=l[Length(l)-1]+l[Length(l)];;
     Add(l,x);
 od;
-Sum(Filtered(l,y->(y mod 2)=0));
+Sum(Filtered(l,y->(y mod 2)=0));;
+
+# cheese mode (100 is a random over-estimate)
+Sum(Filtered(List([1..100],Fibonacci),x->x<4000000);
