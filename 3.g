@@ -24,4 +24,7 @@ LargestPrimeFactor:=function(n)
     return Maximum(List(fact,x->x[1]));
 end;
 
-LargestPrimeFactor(600851475143);
+LargestPrimeFactor(600851475143);;
+
+# GAP abuse
+Maximum(PrimePowersInt(600851475143));
