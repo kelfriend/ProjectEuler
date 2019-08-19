@@ -27,15 +27,21 @@ str_tri:=SplitString(
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23""","","\n");;
 
-# NOTE: As there are only 16384 routes, it is possible to solve this problem by trying
-# every route. However, Problem 67, is the same challenge with a triangle containing
-# one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
+# NOTE: As there are only 16384 routes, it is possible to solve this problem by
+# trying every route. However, Problem 67, is the same challenge with a triangle
+# containing one-hundred rows; it cannot be solved by brute force,
+# and requires a clever method! ;o)
 int_tri:=List([1..15],x->[]);;
 for i in [1..15] do
     for j in [1..(Length(str_tri[i])-i+1)/2] do
         Add(int_tri[i],Int(str_tri[i]{[1,2]+3*(j-1)}));
     od;
 od;
-int_tri;
 
-# INSERT DIJKSTRA'S ALGORITHM HERE
+for i in Reversed([1..14]) do
+    for j in [1..Length(int_tri[i])] do
+        x:=int_tri[i][j];;
+        int_tri[i][j]:=Maximum(x+int_tri[i+1][j],x+int_tri[i+1][j+1]);;
+    od;
+od;
+int_tri[1][1];
