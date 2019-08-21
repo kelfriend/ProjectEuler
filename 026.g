@@ -18,8 +18,7 @@
 # Find the value of d < 1000 for which 1/d contains the longest recurring cycle
 # in its decimal fraction part.
 reciprocal_cycle_lengths:=[];;
-coprime_to_10:=Filtered(Primes,x->(x mod 2<>0) and (x mod 5<>0));;
-for d in coprime_to_10 do
+for d in Primes{[4..Length(Primes)]} do
     n:=1;;
     repeat
         n:=n+1;;
@@ -27,4 +26,4 @@ for d in coprime_to_10 do
         10^n mod d = 1;
     Add(reciprocal_cycle_lengths,n);
 od;
-coprime_to_10[PositionMaximum(reciprocal_cycle_lengths)];
+Primes[PositionMaximum(reciprocal_cycle_lengths)+3];
